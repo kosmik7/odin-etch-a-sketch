@@ -34,13 +34,36 @@ video {
 }
 
 /* end */
+:root {
+    --border-color: #d3d3d3;
+}
 
 body {
     margin: 0;
-    height: 100vh;
+    background-color: #e5dfdf;
+    font-family: system-ui, sans-serif;
+}
+
+h1 {
+    font-size: 3rem;
+    font-weight: 700;
+}
+
+.content-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin:auto;
+}
+
+.flex-container {
     display: flex;
     justify-content: center;
-    align-items: center;
+    gap: 40px;
+    padding: 40px;
+    background-color: #fff;
+    border-radius: 16px;
+    border: 1px solid var(--border-color);
 }
 
 #canvas {
@@ -48,7 +71,7 @@ body {
     height: 600px;
     display: flex;
     flex-direction: column;
-    border: 1px solid #888;
+    border: 1px solid var(--border-color);
 }
 
 #canvas > .row {
@@ -62,4 +85,15 @@ body {
 
 #canvas > .row > div:hover {
     background-color: black;
+}
+
+.settings {
+    width: 200px;
+    padding: 40px 20px;
+}
+
+.settings > div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
