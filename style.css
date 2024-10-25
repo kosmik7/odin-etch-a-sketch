@@ -83,10 +83,6 @@ h1 {
     height: 100%;
 }
 
-#canvas > .row > div:hover {
-    background-color: black;
-}
-
 .settings {
     width: 200px;
     padding: 40px 20px;
