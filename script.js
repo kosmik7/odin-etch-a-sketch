@@ -37,6 +37,8 @@ function drawPixel(event) {
         if (canvasSettings.rainbowMode) {
             const randomHue = Math.floor(Math.random() * 360)
             event.target.style.backgroundColor = `hsl(${randomHue} 80% 60%)`
+        } else if (canvasSettings.eraserMode) {
+            event.target.style.backgroundColor = `white`
         } else {
             event.target.style.backgroundColor = `black`
         }
@@ -55,6 +57,11 @@ function getSettings() {
                 break;
             case 'rainbow-mode-input':
                 canvasSettings.rainbowMode = event.target.checked
+                canvasSettings.eraserMode = false
+                break;
+            case 'eraser-mode-input':
+                canvasSettings.eraserMode = event.target.checked
+                canvasSettings.rainbowMode = false
                 break;
             default:
         }
@@ -64,7 +71,8 @@ function getSettings() {
 
 let canvasSettings = {
     canvasSize: 16,
-    rainbowMode: false
+    rainbowMode: false,
+    eraserMode: false,
 }
 
 const canvasContainer = document.getElementById('canvas-container');
