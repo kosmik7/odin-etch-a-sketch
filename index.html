@@ -16,6 +16,24 @@
         <div class="flex-container">
             <div id="settings">
                 <div>
+                    <input type="color" id="color-input" name="color-input" value="#000000" />
+                </div>
+                <div class="settings-drawing">
+                    <p>Drawing Mode</p>
+                    <div>
+                        <input type="radio" id="color-mode-input" name="mode-input" checked />
+                        <label id="color-mode-input-label" for="color-mode-input">Selected Color</label>
+                    </div>
+                    <div>
+                        <input type="radio" id="rainbow-mode-input" name="mode-input" />
+                        <label id="rainbow-mode-input-label" for="rainbow-mode-input">Rainbow</label>
+                    </div>
+                    <div>
+                        <input type="radio" id="eraser-mode-input" name="mode-input" />
+                        <label id="eraser-mode-input-label" for="eraser-mode-input">Eraser</label>
+                    </div>    
+                </div>
+                <div>
                     <label id="canvas-size-input-label" for="canvas-size-input">Canvas Size: 16x16</label>
                     <input type="range" id="canvas-size-input" name="canvas-size-input" min="4" max="100" value="16" step="1" list="markers" />
                 </div>
@@ -26,22 +44,6 @@
                     <option value="64"></option>
                     <option value="80"></option>
                 </datalist>
-                <div>
-                    <input type="color" id="color-input" name="color-input" value="#000000" />
-                    <label for="color-input">Color Picker</label>
-                  </div>
-                <div>
-                    <label id="color-mode-input-label" for="color-mode-input">Color Mode</label>
-                    <input type="radio" id="color-mode-input" name="mode-input" checked/>
-                </div>
-                <div>
-                    <label id="rainbow-mode-input-label" for="rainbow-mode-input">Rainbow Mode</label>
-                    <input type="radio" id="rainbow-mode-input" name="mode-input"/>
-                </div>
-                <div>
-                    <label id="eraser-mode-input-label" for="eraser-mode-input">Eraser Mode</label>
-                    <input type="radio" id="eraser-mode-input" name="mode-input"/>
-                </div>
                 <button id="clear-button">Clear</button>
             </div>
             <div id="canvas-container">
