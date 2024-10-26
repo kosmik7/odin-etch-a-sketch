@@ -46,14 +46,16 @@ function drawPixel(event) {
 }
 
 function getSettings() {
-    const settingsContainer = document.getElementById('settings')
     const canvasSizeInput = document.getElementById('canvas-size-input')
+    canvasSizeInput.addEventListener('input', (event) => {
+        updateLabel(event.target.value);
+    })
 
-    canvasSizeInput.addEventListener('mouseup', (event) => createCanvas(event.target.value));
-    settingsContainer.addEventListener('input', (event) => {
+    const settingsContainer = document.getElementById('settings')
+    settingsContainer.addEventListener('change', (event) => {
         switch (event.target.id) {
             case 'canvas-size-input':
-                updateLabel(event.target.value);
+                createCanvas(event.target.value);
                 break;
             case 'rainbow-mode-input':
                 canvasSettings.rainbowMode = event.target.checked
