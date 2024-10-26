@@ -58,9 +58,10 @@ function getSettings() {
     const settingsContainer = document.getElementById('settings')
     const colorModeInput = document.getElementById('color-mode-input')
     const canvasSizeInput = document.getElementById('canvas-size-input')
-    canvasSizeInput.addEventListener('input', (event) => {
-        updateLabel(event.target.value);
-    })
+    const clearCanvasButton = document.getElementById('clear-button')
+
+    canvasSizeInput.addEventListener('input', (event) => updateLabel(event.target.value))
+    clearCanvasButton.addEventListener('click', () => createCanvas(canvasSizeInput.value))
 
     settingsContainer.addEventListener('change', (event) => {
         switch (event.target.id) {
