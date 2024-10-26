@@ -1,4 +1,3 @@
-
 function createCanvas(canvasSize = canvasSettings.canvasSize) {
     const canvasElement = document.getElementById('canvas');
     const canvasElementNew = document.createElement('div')
@@ -26,14 +25,20 @@ function updateLabel(canvasSize = canvasSettings.canvasSize) {
 }
 
 function trackMouse() {
-    canvasContainer.addEventListener("mousemove", drawPixel);
+    canvasContainer.addEventListener("mousedown", (event) => {
+        event.preventDefault(); // prevents weird behavior when dragging mouse
+        isMouseDown = true;
+        drawPixel(event);
+    });
+    canvasContainer.addEventListener("mouseover", drawPixel);
     document.addEventListener("mouseup", () => {
+        isMouseDown = false
         canvasContainer.removeEventListener("mousemove", drawPixel);
     });
 }
 
 function drawPixel(event) {
-    if (event.target.classList.contains('pixel')) {
+    if (event.target.classList.contains('pixel') && isMouseDown) {
         switch (true) {
             case canvasSettings.colorMode:
                 event.target.style.backgroundColor = canvasSettings.color;
@@ -89,6 +94,7 @@ function getSettings() {
     });
 }
 
+let isMouseDown = false
 let canvasSettings = {
     canvasSize: 16,
     color: '#000000',
@@ -96,12 +102,8 @@ let canvasSettings = {
     rainbowMode: false,
     eraserMode: false,
 }
-
 const canvasContainer = document.getElementById('canvas-container');
-canvasContainer.addEventListener("mousedown", (event) => {
-    event.preventDefault(); // prevents weird behavior when dragging mouse
-    trackMouse();
-});
 
 getSettings()
 createCanvas()
+trackMouse()
