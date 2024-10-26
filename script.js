@@ -39,18 +39,34 @@ function trackMouse() {
 
 function drawPixel(event) {
     if (event.target.classList.contains('pixel') && isMouseDown) {
-        switch (true) {
-            case canvasSettings.colorMode:
+        switch (canvasSettings.mode) {
+            case 'color':
                 event.target.style.backgroundColor = canvasSettings.color;
+                event.target.style.opacity = 1;
                 break;
-            case canvasSettings.rainbowMode:
+            case 'rainbow':
                 const randomHue = Math.floor(Math.random() * 360);
-                event.target.style.backgroundColor = `hsl(${randomHue} 80% 60%)`;
+                event.target.style.backgroundColor = `hsla(${randomHue}, 80%, 60%, 1)`;
+                event.target.style.opacity = 1;
                 break;
-            case canvasSettings.eraserMode:
+            case 'shading':
+                applyShading(event)
+                break;
+            case 'eraser':
                 event.target.style.backgroundColor = `white`;
+                event.target.style.opacity = 1;
                 break;
         }
+    }
+}
+
+function applyShading(event) {
+    if (!event.target.style.backgroundColor) {
+        event.target.style.backgroundColor = `black`;
+        event.target.style.opacity = 0;
+    }
+    if (Number(event.target.style.opacity) < 1) {
+        event.target.style.opacity = Number(event.target.style.opacity) + 0.1;
     }
 }
 
@@ -58,52 +74,47 @@ function getSettings() {
     const settingsContainer = document.getElementById('settings')
     const colorModeInput = document.getElementById('color-mode-input')
     const canvasSizeInput = document.getElementById('canvas-size-input')
+    const colorInput = document.getElementById('color-input')
     const clearCanvasButton = document.getElementById('clear-button')
 
     canvasSizeInput.addEventListener('input', (event) => updateLabel(event.target.value))
     clearCanvasButton.addEventListener('click', () => createCanvas(canvasSizeInput.value))
+    colorInput.addEventListener('input', (event) => {
+        //use 'input' instead of 'change' to prevent first pixel of wrong color
+        canvasSettings.mode = 'color'
+        canvasSettings.color = event.target.value
+        colorModeInput.checked = true
+    })
 
     settingsContainer.addEventListener('change', (event) => {
         switch (event.target.id) {
             case 'canvas-size-input':
                 createCanvas(event.target.value);
                 break;
-            case 'color-input':
-                canvasSettings.color = event.target.value
-                colorModeInput.checked = true
-                canvasSettings.colorMode = true
-                canvasSettings.rainbowMode = false
-                canvasSettings.eraserMode = false
-                break;
             case 'color-mode-input':
-                canvasSettings.colorMode = event.target.checked
-                canvasSettings.eraserMode = false
-                canvasSettings.rainbowMode = false
+                canvasSettings.mode = 'color'
                 break;
             case 'rainbow-mode-input':
-                canvasSettings.rainbowMode = event.target.checked
-                canvasSettings.eraserMode = false
-                canvasSettings.colorMode = false
+                canvasSettings.mode = 'rainbow'
+                break;
+            case 'shading-mode-input':
+                canvasSettings.mode = 'shading'
                 break;
             case 'eraser-mode-input':
-                canvasSettings.eraserMode = event.target.checked
-                canvasSettings.rainbowMode = false
-                canvasSettings.colorMode = false
+                canvasSettings.mode = 'eraser'
                 break;
             default:
         }
     });
 }
 
+const canvasContainer = document.getElementById('canvas-container');
 let isMouseDown = false
 let canvasSettings = {
-    canvasSize: 16,
-    color: '#000000',
-    colorMode: true,
-    rainbowMode: false,
-    eraserMode: false,
+    canvasSize: 32,
+    color: 'black',
+    mode: 'color',
 }
-const canvasContainer = document.getElementById('canvas-container');
 
 getSettings()
 createCanvas()

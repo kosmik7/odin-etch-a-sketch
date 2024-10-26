@@ -29,13 +29,17 @@
                         <label id="rainbow-mode-input-label" for="rainbow-mode-input">Rainbow</label>
                     </div>
                     <div>
+                        <input type="radio" id="shading-mode-input" name="mode-input" />
+                        <label id="shading-mode-input-label" for="shading-mode-input">Shading</label>
+                    </div>
+                    <div>
                         <input type="radio" id="eraser-mode-input" name="mode-input" />
                         <label id="eraser-mode-input-label" for="eraser-mode-input">Eraser</label>
-                    </div>    
+                    </div>
                 </div>
                 <div>
-                    <label id="canvas-size-input-label" for="canvas-size-input">Canvas Size: 16x16</label>
-                    <input type="range" id="canvas-size-input" name="canvas-size-input" min="4" max="100" value="16" step="1" list="markers" />
+                    <label id="canvas-size-input-label" for="canvas-size-input">Canvas Size: 32x32</label>
+                    <input type="range" id="canvas-size-input" name="canvas-size-input" min="4" max="100" value="32" step="1" list="markers" />
                 </div>
                 <datalist id="markers">
                     <option value="16"></option>
