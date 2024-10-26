@@ -14,7 +14,7 @@
     <div class="content-container">
         <h1>Etch-a-Sketch</h1>
         <div class="flex-container">
-            <div class="settings">
+            <div id="settings">
                 <div>
                     <label id="canvas-size-input-label" for="canvas-size-input">Canvas Size: 16x16</label>
                     <input type="range" id="canvas-size-input" name="canvas-size-input" min="4" max="100" value="16" step="1" list="markers" />
@@ -26,6 +26,10 @@
                     <option value="64"></option>
                     <option value="80"></option>
                 </datalist>
+                <div>
+                    <label id="rainbow-mode-input-label" for="rainbow-mode-input">Rainbow Mode</label>
+                    <input type="checkbox" id="rainbow-mode-input" name="rainbow-mode-input"/>
+                </div>
             </div>
             <div id="canvas-container">
                 <div id="canvas">

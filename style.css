@@ -83,12 +83,12 @@ h1 {
     height: 100%;
 }
 
-.settings {
+#settings {
     width: 200px;
     padding: 40px 20px;
 }
 
-.settings > div {
+#settings > div {
     display: flex;
     flex-direction: column;
     align-items: center;
