@@ -111,7 +111,7 @@ function getSettings() {
 const canvasContainer = document.getElementById('canvas-container');
 let isMouseDown = false
 let canvasSettings = {
-    canvasSize: 32,
+    canvasSize: 48,
     color: 'black',
     mode: 'color',
 }
